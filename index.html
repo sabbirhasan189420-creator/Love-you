@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret For You 💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3,#fad0c4);
+    font-family: Arial;
+    text-align: center;
+    color: white;
+}
+
+/* Hidden main */
+#mainContent {
+    display: none;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#yesBtn { background:#ff477e; color:white; }
+#noBtn { background:white; color:#ff477e; position:relative; }
+
+img {
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    margin:10px;
+    border:4px solid white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SECRET LOGIN -->
+<div id="lockScreen">
+    <h2>🔒 Enter Secret Code</h2>
+    <input type="text" id="codeInput" placeholder="Type something..." style="padding:10px;">
+    <br><br>
+    <button onclick="checkCode()">Unlock 💌</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+
+    <h1>Will you be mine forever? 💖</h1>
+
+    <button id="yesBtn">Yes 😍</button>
+    <button id="noBtn">No 😒</button>
+
+    <div id="success" style="display:none;">
+        <h2>Yay! 💗</h2>
+        <p>You're the best thing that's ever happened to me. 💖</p>
+        <p id="typing"></p>
+
+        <!-- YOUR IMAGES -->
+        <div>
+            <img src="my1.jpg">
+<img src="my2.jpg">
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+// 🔑 SECRET CODE
+function checkCode() {
+    const input = document.getElementById("codeInput").value.trim().toLowerCase();
+
+    if(input === "love" || input === "sabbir") {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    } else {
+        alert("Wrong code 😒");
+    }
+}
+// 😈 NO button escape
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random()*80 + "vw";
+    noBtn.style.top = Math.random()*80 + "vh";
+});
+
+// ✨ typing
+const text = "From today, it's always you and me... ❤️";
+let i = 0;
+
+function typeEffect() {
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 50);
+    }
+}
+
+// 🎉 YES click
+document.getElementById("yesBtn").onclick = () => {
+    document.getElementById("success").style.display = "block";
+    typeEffect();
+};
+
+</script>
+
+</body>
+</html>
