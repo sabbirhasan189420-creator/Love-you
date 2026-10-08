@@ -1,122 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secret For You 💖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Gift Box of Love</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg,#ff758c,#ff7eb3,#fad0c4);
-    font-family: Arial;
-    text-align: center;
-    color: white;
-}
+    body {
+      background: linear-gradient(135deg, #ffd1dc, #ffe6eb);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
 
-/* Hidden main */
-#mainContent {
-    display: none;
-}
+    .container {
+      width: 90%;
+      max-width: 650px;
+      min-height: 450px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.5s ease-in-out;
+    }
 
-/* Buttons */
-button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-#yesBtn { background:#ff477e; color:white; }
-#noBtn { background:white; color:#ff477e; position:relative; }
+    .hidden {
+      display: none !important;
+    }
 
-img {
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    margin:10px;
-    border:4px solid white;
-}
-</style>
+    h1 {
+      color: #ff4b72;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-yes {
+      background-color: #ff4b72;
+      color: white;
+    }
+
+    .btn-yes:hover {
+      background-color: #e03259;
+      transform: scale(1.05);
+    }
+
+    .btn-no {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .btn-no:hover {
+      background-color: #565e64;
+      transform: scale(1.05);
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #f1f1f1;
+      border: none;
+      font-size: 1.2rem;
+      padding: 5px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: #e2e2e2;
+    }
+
+    /* গিফট বক্স পেজ */
+    .gift-box {
+      font-size: 80px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    /* মূল গিফট হাব (ভেতরের আইটেমসমূহ) */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .item-card {
+      background: #fff0f3;
+      border: 2px dashed #ff99ac;
+      border-radius: 15px;
+      padding: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .item-card:hover {
+      background: #ffe3e8;
+      transform: translateY(-5px);
+    }
+
+    .item-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .photo-card {
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 140px;
+      border: 1px solid #eee;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 5px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .featured-img {
+      max-width: 200px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- SECRET LOGIN -->
-<div id="lockScreen">
-    <h2>🔒 Enter Secret Love Code</h2>
-    <input type="text" id="codeInput" placeholder="Type something..." style="padding:10px;">
-    <br><br>
-    <button onclick="checkCode()">Unlock 💌</button>
-</div>
-
-<!-- MAIN CONTENT -->
-<div id="mainContent">
-
-    <h1>Will you be mine forever? 💖</h1>
-
-    <button id="yesBtn">Yes 😍</button>
-    <button id="noBtn">No 😒</button>
-
-    <div id="success" style="display:none;">
-        <h2>Yay! 💗</h2>
-        <p>You're the best thing that's ever happened to me. 💖</p>
-        <p id="typing"></p>
-
-        <!-- YOUR IMAGES -->
-        <div>
-            <img src="My1.jpg">
-<img src="My2.jpg">
-        </div>
+  <!-- পেজ ১: প্রশ্ন -->
+  <div class="container" id="page-start">
+    <div style="font-size: 60px; margin-bottom: 10px;">🥰</div>
+    <h1>Are you ready for the surprise? 💕</h1>
+    <div class="btn-group">
+      <button class="btn btn-yes" onclick="showPage('page-intro')">YES 💖</button>
+      <button class="btn btn-no" onclick="showPage('page-angry')">NO! ❌</button>
     </div>
+  </div>
 
-</div>
+  <!-- পেজ ২: না বললে রাগ করার দৃশ্য -->
+  <div class="container hidden" id="page-angry">
+    <button class="back-btn" onclick="showPage('page-start')">⬅️</button>
+    <div style="font-size: 70px; margin-bottom: 10px;">🐥🔪</div>
+    <h1 style="color: #d90429;">HOW DARE YOU?! 😡</h1>
+    <p>না বলার কোনো সুযোগ নেই! আবার চেষ্টা করো!</p>
+    <button class="btn btn-yes" onclick="showPage('page-start')">আবার যাই 🥺</button>
+  </div>
 
-<script>
+  <!-- পেজ ৩: বিশেষ বার্তা -->
+  <div class="container hidden" id="page-intro">
+    <div style="font-size: 60px; margin-bottom: 10px;">💌</div>
+    <h1>I am sorry, I am not near you...</h1>
+    <p>...but I am sending you a little piece of my heart! 💕</p>
+    <button class="btn btn-yes" onclick="showPage('page-box')">পরবর্তী ➡️</button>
+  </div>
 
-// 🔑 SECRET CODE
-function checkCode() {
-    const input = document.getElementById("codeInput").value.trim().toLowerCase();
+  <!-- পেজ ৪: গিফট বক্স -->
+  <div class="container hidden" id="page-box">
+    <h1>Here's a gift box for you 🎁</h1>
+    <p>খোলার জন্য বক্সে ক্লিক করো!</p>
+    <div class="gift-box" onclick="showPage('page-hub')">🎁</div>
+  </div>
 
-    if(input === "bou" || input === "sabbir") {
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-    } else {
-        alert("Wrong code 😒");
+  <!-- পেজ ৫: গিফট বক্সের ভিতরের মেনু (হাব) -->
+  <div class="container hidden" id="page-hub">
+    <h1>Virtual Gift Box 💝</h1>
+    <p>যেকোনো একটি উপহারে ক্লিক করো:</p>
+    <div class="items-grid">
+      <div class="item-card" onclick="showPage('page-letter')">
+        <div class="item-icon">💌</div>
+        <strong>প্রেমপত্র</strong>
+      </div>
+      <div class="item-card" onclick="showPage('page-memories')">
+        <div class="item-icon">📷</div>
+        <strong>স্মৃতিগুলো</strong>
+      </div>
+      <div class="item-card" onclick="showPage('page-flower')">
+        <div class="item-icon">🌻</div>
+        <strong>ফুল ও ভালোবাসা</strong>
+      </div>
+      <div class="item-card" onclick="showPage('page-music')">
+        <div class="item-icon">🎵</div>
+        <strong>আমাদের গান</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- সাব-পেজ ১: চিঠি -->
+  <div class="container hidden" id="page-letter">
+    <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
+    <h1>A Letter For You 💌</h1>
+    <img src="img1.jpg" alt="Letter Image" class="featured-img">
+    <p style="text-align: justify; padding: 10px; background: #fff5f7; border-radius: 10px;">
+      দূরত্ব যতই হোক না কেন, তুমি সবসময় আমার হৃদয়ের খুব কাছে আছো। প্রতিটি দিন তোমার সুন্দর হাসির কথা মনে পড়ে। শুভ জন্মদিন/ভালোবাসা রইল আমার প্রিয় মানুষটির জন্য! ❤️
+    </p>
+  </div>
+
+  <!-- সাব-পেজ ২: স্মৃতি (ছবি গ্যালারি) -->
+  <div class="container hidden" id="page-memories">
+    <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
+    <h1>Our Beautiful Memories 📸</h1>
+    <div class="gallery">
+      <div class="photo-card">
+        <img src="img2.jpg" alt="Memory 1">
+        <small>প্রথম দেখা</small>
+      </div>
+      <div class="photo-card">
+        <img src="img3.jpg" alt="Memory 2">
+        <small>প্রিয় সময়</small>
+      </div>
+      <div class="photo-card">
+        <img src="img4.jpg" alt="Memory 3">
+        <small>হাসিমুখ</small>
+      </div>
+      <div class="photo-card">
+        <img src="img5.jpg" alt="Memory 4">
+        <small>বিশেষ মুহূর্ত</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- সাব-পেজ ৩: ফুল ও বার্তা -->
+  <div class="container hidden" id="page-flower">
+    <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
+    <img src="img6.jpg" alt="Flower/Cat" class="featured-img">
+    <h1>You're My Sunflower 🌻</h1>
+    <p>"I keep turning back to you, no matter what." 💖</p>
+  </div>
+
+  <!-- সাব-পেজ ৪: গান -->
+  <div class="container hidden" id="page-music">
+    <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
+    <h1>Songs for You 🎶</h1>
+    <img src="img7.jpg" alt="Music Cover" class="featured-img">
+    <p>Spotify বা প্রিয় গানের লিংক এখানে যুক্ত করতে পারেন:</p>
+    <div style="margin: 15px 0;">
+      <p>🎵 <i>Meri Banogi Kya</i></p>
+      <p>🎵 <i>Chaand Baaliyan</i></p>
+    </div>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      // সব পেজ লুকিয়ে ফেলা
+      const pages = document.querySelectorAll('.container');
+      pages.forEach(p => p.classList.add('hidden'));
+
+      // নির্দিষ্ট পেজ দেখানো
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.remove('hidden');
+      }
     }
-}
-// 😈 NO button escape
-const noBtn = document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover", () => {
-    noBtn.style.position = "absolute";
-    noBtn.style.left = Math.random()*80 + "vw";
-    noBtn.style.top = Math.random()*80 + "vh";
-});
-
-// ✨ typing
-const text = "From today, it's always you and me... ❤️";
-let i = 0;
-
-function typeEffect() {
-    if(i < text.length){
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeEffect, 50);
-    }
-}
-
-// 🎉 YES click
-document.getElementById("yesBtn").onclick = () => {
-    document.getElementById("success").style.display = "block";
-    typeEffect();
-};
-
-</script>
-
+  </script>
 </body>
 </html>
