@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,7 +112,7 @@
       background: #e2e2e2;
     }
 
-    /* গিফট বক্স পেজ */
+    /* Gift Box Page */
     .gift-box {
       font-size: 80px;
       cursor: pointer;
@@ -124,7 +124,7 @@
       transform: scale(1.15) rotate(5deg);
     }
 
-    /* মূল গিফট হাব (ভেতরের আইটেমসমূহ) */
+    /* Items Hub Grid */
     .items-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -152,6 +152,7 @@
       margin-bottom: 10px;
     }
 
+    /* Gallery */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -165,7 +166,7 @@
       padding: 10px;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 140px;
+      width: 130px;
       border: 1px solid #eee;
     }
 
@@ -180,6 +181,8 @@
 
     .featured-img {
       max-width: 200px;
+      max-height: 200px;
+      object-fit: cover;
       border-radius: 15px;
       margin-bottom: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -188,7 +191,7 @@
 </head>
 <body>
 
-  <!-- পেজ ১: প্রশ্ন -->
+  <!-- Page 1: Question -->
   <div class="container" id="page-start">
     <div style="font-size: 60px; margin-bottom: 10px;">🥰</div>
     <h1>Are you ready for the surprise? 💕</h1>
@@ -198,102 +201,102 @@
     </div>
   </div>
 
-  <!-- পেজ ২: না বললে রাগ করার দৃশ্য -->
+  <!-- Page 2: Angry Reaction -->
   <div class="container hidden" id="page-angry">
     <button class="back-btn" onclick="showPage('page-start')">⬅️</button>
     <div style="font-size: 70px; margin-bottom: 10px;">🐥🔪</div>
     <h1 style="color: #d90429;">HOW DARE YOU?! 😡</h1>
-    <p>না বলার কোনো সুযোগ নেই! আবার চেষ্টা করো!</p>
-    <button class="btn btn-yes" onclick="showPage('page-start')">আবার যাই 🥺</button>
+    <p>Saying "NO" is not an option! Try again!</p>
+    <button class="btn btn-yes" onclick="showPage('page-start')">Go Back 🥺</button>
   </div>
 
-  <!-- পেজ ৩: বিশেষ বার্তা -->
+  <!-- Page 3: Message Intro -->
   <div class="container hidden" id="page-intro">
     <div style="font-size: 60px; margin-bottom: 10px;">💌</div>
     <h1>I am sorry, I am not near you...</h1>
     <p>...but I am sending you a little piece of my heart! 💕</p>
-    <button class="btn btn-yes" onclick="showPage('page-box')">পরবর্তী ➡️</button>
+    <button class="btn btn-yes" onclick="showPage('page-box')">Next ➡️</button>
   </div>
 
-  <!-- পেজ ৪: গিফট বক্স -->
+  <!-- Page 4: Gift Box -->
   <div class="container hidden" id="page-box">
     <h1>Here's a gift box for you 🎁</h1>
-    <p>খোলার জন্য বক্সে ক্লিক করো!</p>
+    <p>Click the box to open!</p>
     <div class="gift-box" onclick="showPage('page-hub')">🎁</div>
   </div>
 
-  <!-- পেজ ৫: গিফট বক্সের ভিতরের মেনু (হাব) -->
+  <!-- Page 5: Gift Hub Menu -->
   <div class="container hidden" id="page-hub">
     <h1>Virtual Gift Box 💝</h1>
-    <p>যেকোনো একটি উপহারে ক্লিক করো:</p>
+    <p>Click on any surprise to open:</p>
     <div class="items-grid">
       <div class="item-card" onclick="showPage('page-letter')">
         <div class="item-icon">💌</div>
-        <strong>প্রেমপত্র</strong>
+        <strong>Love Letter</strong>
       </div>
       <div class="item-card" onclick="showPage('page-memories')">
         <div class="item-icon">📷</div>
-        <strong>স্মৃতিগুলো</strong>
+        <strong>Our Memories</strong>
       </div>
       <div class="item-card" onclick="showPage('page-flower')">
         <div class="item-icon">🌻</div>
-        <strong>ফুল ও ভালোবাসা</strong>
+        <strong>Flowers & Love</strong>
       </div>
       <div class="item-card" onclick="showPage('page-music')">
         <div class="item-icon">🎵</div>
-        <strong>আমাদের গান</strong>
+        <strong>Our Songs</strong>
       </div>
     </div>
   </div>
 
-  <!-- সাব-পেজ ১: চিঠি -->
+  <!-- Sub-page 1: Letter -->
   <div class="container hidden" id="page-letter">
     <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
     <h1>A Letter For You 💌</h1>
-    <img src="img1.jpg" alt="Letter Image" class="featured-img">
+    <img src="img1" alt="Letter Image" class="featured-img">
     <p style="text-align: justify; padding: 10px; background: #fff5f7; border-radius: 10px;">
-      দূরত্ব যতই হোক না কেন, তুমি সবসময় আমার হৃদয়ের খুব কাছে আছো। প্রতিটি দিন তোমার সুন্দর হাসির কথা মনে পড়ে। শুভ জন্মদিন/ভালোবাসা রইল আমার প্রিয় মানুষটির জন্য! ❤️
+      No matter the distance, you are always close to my heart. Every day I think of your beautiful smile. Sending all my love to my favorite person! ❤️
     </p>
   </div>
 
-  <!-- সাব-পেজ ২: স্মৃতি (ছবি গ্যালারি) -->
+  <!-- Sub-page 2: Memories (Photo Gallery) -->
   <div class="container hidden" id="page-memories">
     <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
     <h1>Our Beautiful Memories 📸</h1>
     <div class="gallery">
       <div class="photo-card">
-        <img src="img2.jpg" alt="Memory 1">
-        <small>প্রথম দেখা</small>
+        <img src="img2" alt="Memory 1">
+        <small>Special Moment</small>
       </div>
       <div class="photo-card">
-        <img src="img3.jpg" alt="Memory 2">
-        <small>প্রিয় সময়</small>
+        <img src="img5" alt="Memory 2">
+        <small>Sweet Memories</small>
       </div>
       <div class="photo-card">
-        <img src="20240930_164606.jpg" alt="Memory 3">
-        <small>হাসিমুখ</small>
+        <img src="20260908_143250.jpg" alt="Memory 3">
+        <small>Unforgettable</small>
       </div>
       <div class="photo-card">
-        <img src="img5.jpg" alt="Memory 4">
-        <small>বিশেষ মুহূর্ত</small>
+        <img src="20260912_164100.jpg" alt="Memory 4">
+        <small>Cherished Times</small>
       </div>
     </div>
   </div>
 
-  <!-- সাব-পেজ ৩: ফুল ও বার্তা -->
+  <!-- Sub-page 3: Flower & Note -->
   <div class="container hidden" id="page-flower">
     <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
-    <img src="img6.jpg" alt="Flower/Cat" class="featured-img">
+    <img src="20240930_164606.jpg" alt="Sunflower" class="featured-img">
     <h1>You're My Sunflower 🌻</h1>
     <p>"I keep turning back to you, no matter what." 💖</p>
   </div>
 
-  <!-- সাব-পেজ ৪: গান -->
+  <!-- Sub-page 4: Music -->
   <div class="container hidden" id="page-music">
     <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
     <h1>Songs for You 🎶</h1>
-    <img src="img7.jpg" alt="Music Cover" class="featured-img">
-    <p>Spotify বা প্রিয় গানের লিংক এখানে যুক্ত করতে পারেন:</p>
+    <img src="img7" alt="Music Cover" class="featured-img">
+    <p>Our favorite tracks:</p>
     <div style="margin: 15px 0;">
       <p>🎵 <i>Meri Banogi Kya</i></p>
       <p>🎵 <i>Chaand Baaliyan</i></p>
@@ -302,11 +305,11 @@
 
   <script>
     function showPage(pageId) {
-      // সব পেজ লুকিয়ে ফেলা
+      // Hide all pages
       const pages = document.querySelectorAll('.container');
       pages.forEach(p => p.classList.add('hidden'));
 
-      // নির্দিষ্ট পেজ দেখানো
+      // Show the targeted page
       const target = document.getElementById(pageId);
       if (target) {
         target.classList.remove('hidden');
