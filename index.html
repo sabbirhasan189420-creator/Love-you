@@ -265,11 +265,11 @@
     <h1>Our Beautiful Memories 📸</h1>
     <div class="gallery">
       <div class="photo-card">
-        <img src="img2" alt="Memory 1">
+        <img src="img2.jpg" alt="Memory 1">
         <small>Special Moment</small>
       </div>
       <div class="photo-card">
-        <img src="img5" alt="Memory 2">
+        <img src="img5.jpg" alt="Memory 2">
         <small>Sweet Memories</small>
       </div>
       <div class="photo-card">
@@ -290,19 +290,20 @@
     <h1>You're My Sunflower 🌻</h1>
     <p>"I keep turning back to you, no matter what." 💖</p>
   </div>
-
   <!-- Sub-page 4: Music -->
   <div class="container hidden" id="page-music">
-    <button class="back-btn" onclick="showPage('page-hub')">⬅️</button>
-    <h1>Songs for You 🎶</h1>
-    <img src="img7" alt="Music Cover" class="featured-img">
-    <p>Our favorite tracks:</p>
-    <div style="margin: 15px 0;">
-      <p>🎵 <i>Meri Banogi Kya</i></p>
-      <p>🎵 <i>Chaand Baaliyan</i></p>
+    <button class="back-btn" onclick="stopMusic(); showPage('page-hub');">⬅️</button>
+    <h1>Our Special Song 🎶</h1>
+    <img src="img7.jpg" alt="Music Cover" class="featured-img">
+    
+    <div class="player-card">
+      <p style="font-weight: bold; margin-bottom: 12px; color: #ff4b72;">Now Playing: Our Song ❤️</p>
+      <audio id="myAudio" src="song.mp3" preload="auto"></audio>
+      <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
     </div>
   </div>
 
+  
   <script>
     function showPage(pageId) {
       // Hide all pages
